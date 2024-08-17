@@ -29,10 +29,21 @@
   <link rel="manifest" href="/durdo/manifest.json">
 
   <!-- Firebase App (the core Firebase SDK) -->
-  <script src="https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js"></script>
-
-  <!-- Your custom Firebase configuration -->
   <script>
+    // The value below is injected by flutter build, do not touch.
+    const serviceWorkerVersion = "552640685";
+  </script>
+  <!-- This script adds the flutter initialization JS code -->
+  <script src="flutter.js" defer></script>
+</head>
+
+<body>
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/10.5.0/firebase-app.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+
     // Your web app's Firebase configuration
     const firebaseConfig = {
       apiKey: 'AIzaSyDk5DoKhhNpaOJvraz9LIUb0ctHGrDsaPw',
@@ -44,41 +55,8 @@
     };
 
     // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
+    const app = initializeApp(firebaseConfig);
   </script>
-
-  <!-- This script adds the Flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
-
-  <!-- Add custom script for service worker registration -->
-  <script>
-    // Register the service worker
-    if ('serviceWorker' in navigator) {
-      navigator.serviceWorker.register('/web/service_worker.js')
-        .then(function (registration) {
-          console.log('Service Worker registered with scope:', registration.scope);
-        })
-        .catch(function (error) {
-          console.log('Service Worker registration failed:', error);
-        });
-    }
-
-    // Request Notification Permission
-    window.addEventListener('load', function () {
-      if (Notification.permission === 'default') {
-        Notification.requestPermission().then(function (permission) {
-          if (permission === 'granted') {
-            console.log('Notification permission granted.');
-          } else {
-            console.log('Notification permission denied.');
-          }
-        });
-      }
-    });
-  </script>
-</head>
-
-<body>
   <script>
     window.addEventListener('load', function (ev) {
       // Download main.dart.js
